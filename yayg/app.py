@@ -14,7 +14,7 @@ from gi.repository import Adw, Gio
 from .settings import Settings
 from .window import YaygWindow
 
-APP_ID = "io.github.yayg"
+APP_ID = "io.github.sejunch.yayg"
 
 _SCHEMES = {
     "system": Adw.ColorScheme.DEFAULT,

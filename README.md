@@ -73,8 +73,8 @@ python3 run.py
 |---|---|
 | `~/.local/share/yayg/` | 앱 본체 |
 | `~/.local/bin/yayg` | 실행 스크립트 |
-| `~/.local/share/applications/io.github.yayg.desktop` | 런처 항목 |
-| `~/.local/share/icons/hicolor/scalable/apps/io.github.yayg.svg` | 아이콘 |
+| `~/.local/share/applications/io.github.sejunch.yayg.desktop` | 런처 항목 |
+| `~/.local/share/icons/hicolor/scalable/apps/io.github.sejunch.yayg.svg` | 아이콘 |
 
 설치 후 런처에서 `yayg` · `패키지` · `aur` · `pacman` · `yay` · `arch` 중
 아무거나로 검색하면 나온다.

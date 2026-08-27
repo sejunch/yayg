@@ -8,7 +8,7 @@ LIB="$DATA/yayg"
 BIN="$HOME/.local/bin"
 APPS="$DATA/applications"
 ICONS="$DATA/icons/hicolor/scalable/apps"
-DESKTOP_ID="io.github.yayg"
+DESKTOP_ID="io.github.sejunch.yayg"
 
 refresh_caches() {
     command -v update-desktop-database >/dev/null && update-desktop-database -q "$APPS" || true
