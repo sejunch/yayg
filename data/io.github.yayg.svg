@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2aa5e0"/>
+      <stop offset="1" stop-color="#0f6ea3"/>
+    </linearGradient>
+    <linearGradient id="topface" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#eaf6fd"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="512" height="512" rx="112" ry="112" fill="url(#bg)"/>
+
+  <!-- 패키지 상자 (아이소메트릭) -->
+  <g>
+    <!-- 윗면 -->
+    <path d="M256 104 L392 182 L256 260 L120 182 Z" fill="url(#topface)"/>
+    <!-- 왼쪽면 -->
+    <path d="M120 182 L256 260 L256 416 L120 338 Z" fill="#ffffff" opacity="0.55"/>
+    <!-- 오른쪽면 -->
+    <path d="M392 182 L256 260 L256 416 L392 338 Z" fill="#ffffff" opacity="0.78"/>
+    <!-- 상자 띠 -->
+    <path d="M188 143 L324 221 L324 299 L256 260 L188 221 Z" fill="#0f6ea3" opacity="0.16"/>
+  </g>
+
+  <!-- 업데이트 화살표 -->
+  <g transform="translate(360 360)">
+    <circle r="74" fill="#0d5a86"/>
+    <circle r="74" fill="none" stroke="#ffffff" stroke-width="8" opacity="0.35"/>
+    <path d="M0 -38 L0 22" stroke="#ffffff" stroke-width="16" stroke-linecap="round"/>
+    <path d="M-26 -4 L0 24 L26 -4" fill="none" stroke="#ffffff" stroke-width="16"
+          stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>
