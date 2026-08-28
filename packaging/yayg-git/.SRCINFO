@@ -1,0 +1,21 @@
+pkgbase = yayg-git
+	pkgdesc = yay 기반 GTK4/libadwaita Arch Linux 패키지 관리자
+	pkgver = 0.1.0.r0.g0000000
+	pkgrel = 1
+	url = https://github.com/sejunch/yayg
+	arch = any
+	license = MIT
+	makedepends = git
+	depends = python
+	depends = python-gobject
+	depends = gtk4
+	depends = libadwaita
+	depends = yay
+	optdepends = pacman-contrib: checkupdates 로 안전한 저장소 업데이트 확인
+	optdepends = archlinux-appstream-data: 설치되지 않은 패키지의 아이콘과 스크린샷
+	provides = yayg
+	conflicts = yayg
+	source = yayg-git::git+https://github.com/sejunch/yayg.git
+	sha256sums = SKIP
+
+pkgname = yayg-git

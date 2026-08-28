@@ -1,0 +1,58 @@
+# Maintainer: 천세준 <sejuncheon5@gmail.com>
+
+pkgname=yayg-git
+pkgver=0.1.0.r0.g0000000
+pkgrel=1
+pkgdesc='yay 기반 GTK4/libadwaita Arch Linux 패키지 관리자'
+arch=('any')
+url='https://github.com/sejunch/yayg'
+license=('MIT')
+depends=('python' 'python-gobject' 'gtk4' 'libadwaita' 'yay')
+makedepends=('git')
+provides=('yayg')
+conflicts=('yayg')
+optdepends=(
+  'pacman-contrib: checkupdates 로 안전한 저장소 업데이트 확인'
+  'archlinux-appstream-data: 설치되지 않은 패키지의 아이콘과 스크린샷'
+)
+source=("$pkgname::git+$url.git")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd "$pkgname"
+  # 최신 태그 기준. 태그가 없으면 커밋 수로 대체한다.
+  git describe --long --tags --abbrev=7 2>/dev/null \
+    | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g' \
+    || printf "0.0.0.r%s.g%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short=7 HEAD)"
+}
+
+package() {
+  cd "$pkgname"
+
+  # 순수 파이썬이라 빌드 단계가 없다. 모듈을 통째로 옮긴다.
+  install -d "$pkgdir/usr/share/$pkgname"
+  cp -r yayg "$pkgdir/usr/share/$pkgname/"
+  find "$pkgdir/usr/share/$pkgname" -name '__pycache__' -type d -exec rm -rf {} + 2>/dev/null || true
+
+  # 런처. PYTHONPATH 환경변수에 기대지 않도록 경로를 직접 넣는다.
+  install -d "$pkgdir/usr/bin"
+  cat > "$pkgdir/usr/bin/$pkgname" <<'LAUNCHER'
+#!/usr/bin/python3
+import sys
+
+sys.path.insert(0, "/usr/share/yayg")
+
+from yayg.app import main
+
+sys.exit(main())
+LAUNCHER
+  chmod 755 "$pkgdir/usr/bin/$pkgname"
+
+  install -Dm644 data/io.github.sejunch.yayg.desktop \
+    "$pkgdir/usr/share/applications/io.github.sejunch.yayg.desktop"
+  install -Dm644 data/io.github.sejunch.yayg.svg \
+    "$pkgdir/usr/share/icons/hicolor/scalable/apps/io.github.sejunch.yayg.svg"
+
+  install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+  install -Dm644 README.md "$pkgdir/usr/share/doc/$pkgname/README.md"
+}
