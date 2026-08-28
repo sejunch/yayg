@@ -60,27 +60,55 @@ yay  python  python-gobject  gtk4  libadwaita  pacman-contrib  archlinux-appstre
 python3 run.py
 ```
 
-앱 런처에 등록하려면 (root 불필요):
+## 설치
+
+### pacman 패키지로 (권장)
 
 ```bash
-./install.sh                # 설치
-./install.sh --uninstall    # 제거
+git clone https://github.com/sejunch/yayg.git
+cd yayg && ./install.sh
 ```
 
-들어가는 곳:
+`packaging/yayg/PKGBUILD` 로 패키지를 만들어 설치한다. 설치 단계에서 sudo 를
+물어본다. 시스템 경로에 들어가므로 pacman 훅이 데스크톱·아이콘 캐시를 알아서
+갱신하고, `pacman -R yayg` 로 깔끔하게 지워진다.
 
-| 경로 | 내용 |
-|---|---|
-| `~/.local/share/yayg/` | 앱 본체 |
-| `~/.local/bin/yayg` | 실행 스크립트 |
-| `~/.local/share/applications/io.github.sejunch.yayg.desktop` | 런처 항목 |
-| `~/.local/share/icons/hicolor/scalable/apps/io.github.sejunch.yayg.svg` | 아이콘 |
+소스는 PKGBUILD 에 적힌 **GitHub 릴리스 tarball**에서 받아온다 (sha256 검증).
+저장소를 클론해 두었더라도 작업 중인 로컬 수정본이 아니라 태그된 버전이 설치된다.
+
+> AUR 신규 계정 등록이 중단된 동안의 설치 방법이다. 재개되면 `yay -S yayg` 로도
+> 설치할 수 있게 된다.
+
+### 홈 디렉터리에 (root 불필요)
+
+```bash
+./install.sh --home
+```
+
+작업 중인 소스를 그대로 `~/.local` 에 넣는다. 코드를 고쳐 가며 쓸 때 편하다.
+
+### 제거
+
+```bash
+./install.sh --uninstall     # 둘 중 설치된 것을 알아서 제거
+```
+
+### 어디에 들어가나
+
+| | pacman 패키지 | 홈 설치 |
+|---|---|---|
+| 본체 | `/usr/share/yayg/` | `~/.local/share/yayg/` |
+| 실행 파일 | `/usr/bin/yayg` | `~/.local/bin/yayg` |
+| 런처 항목 | `/usr/share/applications/` | `~/.local/share/applications/` |
+| 아이콘 | `/usr/share/icons/hicolor/scalable/apps/` | 〃 (홈 경로) |
+| 캐시 갱신 | pacman 훅이 자동 | 스크립트가 직접 |
+| 보이는 범위 | 모든 사용자 | 본인만 |
+
+둘을 같이 깔면 런처에 항목이 두 개 뜬다. 패키지 모드로 설치할 때 홈 설치본이
+있으면 스크립트가 먼저 물어보고 지워 준다.
 
 설치 후 런처에서 `yayg` · `패키지` · `aur` · `pacman` · `yay` · `arch` 중
 아무거나로 검색하면 나온다.
-
-데스크톱 항목의 `Exec` 은 설치 시점에 절대 경로로 기록된다. 앱 런처는 로그인 셸의
-`PATH` 를 물려받지 않는 경우가 있어서 `Exec=yayg` 로는 안 뜰 수 있기 때문이다.
 
 ## 단축키
 
